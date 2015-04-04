@@ -1,0 +1,48 @@
+
+.testImage {
+  float: left;
+  width: 33%;
+}
+
+.testImage img {
+  width: 100%;
+  height: auto;
+}
+
+.test {
+}
+
+.test {
+  clear: both;
+}
+
+.test .test-succeeded,
+.test .test-failed {
+  width: 80%;
+  float: left;
+}
+
+.test a {
+  display: block;
+  padding: 2px 4px 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.test a:hover {
+  color: #000;
+}
+
+.test-succeeded a {
+  background-color: #0f0;
+}
+
+.test-failed a {
+  background-color: #f00;
+}
+
+.test .test-difference {
+  width: 20%;
+  float: right;
+}

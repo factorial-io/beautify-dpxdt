@@ -1,0 +1,17 @@
+<html>
+<head>
+  <title>@config.targetUrl</title>
+  <style>
+    #include('styles.css')
+  </style>
+</head>
+<body class="test">
+  <h1>Results for @config.targetUrl</h1>
+  <pre>
+    #pprint(config)
+  </pre>
+  <div class="testImage testImage-base"><img src="@base_image" /></div>
+  <div class="testImage testImage-diff"><img src="@diff_image" /></div>
+  <div class="testImage testImage-result"><img src="@current_image" /></div>
+</body>
+</html>

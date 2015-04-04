@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>dpxdt results</title>
+  <style>
+    #include('styles.css')
+  </style>
+</head>
+<body>
+  <h1>dpxdt results</h1>
+  <ul>
+    #for @test in @tests:
+      <li class="test test-@test.result.className">
+        <a href="@test.filename">
+          <span class="test-name">@test.config.targetUrl</span>
+          #if(@test.result.succeeded)
+            succeeded
+          #else
+            failed
+          #end
+          <span class="test-difference">
+            @test.result.difference
+          </span>
+        </a>
+        #if(@test.result.succeeded==False)
+          <div class="test-detail hidden">
+            <div class="testImage testImage-base"><img src="@test.base_image" /></div>
+            <div class="testImage testImage-diff"><img src="@test.diff_image" /></div>
+            <div class="testImage testImage-result"><img src="@test.current_image" /></div>
+          </div>
+        #end
+      </li>
+    #end
+  </ul>
+</body>
+</html>
