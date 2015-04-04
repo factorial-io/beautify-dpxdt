@@ -21,3 +21,6 @@ Pull this repository, cd into it and run `pip install -r requirements.txt`
 
 This script will be part of the [dpxdt-docker-file](https://github.com/factorial-io/dpxdt-docker) to beautify the output. The dockerfile includes a fully running dpxdt-installation with phantom-js etc.
 
+## Todo
+
+* Better styling of the html-files.
