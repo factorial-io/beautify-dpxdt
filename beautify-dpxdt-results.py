@@ -3,7 +3,7 @@ import os.path
 import argparse
 import json
 import re
-from pprint import pprint
+import pprint
 from quik import FileLoader
 
 
@@ -21,20 +21,19 @@ def readTestResult(log_file):
 
 def readTest(config_file):
   base_path = os.path.dirname(config_file)
-
+  folder_name = os.path.basename(base_path)
   raw_json_data=open(config_file).read()
   data = json.loads(raw_json_data)
 
   test = {
     'config': data,
+    'config_formatted' : pprint.pformat(data, indent=2, width=1),
     'result': readTestResult(base_path + '/log.txt'),
     'base_image' : base_path + '/ref_resized',
     'current_image' : base_path + '/screenshot.png',
     'diff_image': base_path + '/diff.png',
-    'filename': data['targetUrl'].replace('http://','').replace('/', '-') + '.html'
+    'filename': folder_name + "-" + data['targetUrl'].replace('http://','').replace('/', '-') + '.html'
   }
-
-  pprint(test)
 
   return test;
 
@@ -68,12 +67,16 @@ def main():
     result_file.write(content)
     result_file.close()
 
+    print "Created " + test['filename'] + "..."
+
   template = loader.load_template('index.html')
   content = template.render({ 'tests': tests }, loader=loader).encode('utf-8')
 
   result_file = open('index.html', "w")
   result_file.write(content)
   result_file.close()
+
+  print "Created inde.html ..."
 
 
 if __name__ == "__main__":

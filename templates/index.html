@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>dpxdt results</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
   <style>
     #include('styles.css')
   </style>
@@ -17,12 +18,15 @@
           #else
             failed
           #end
+          <span class="test-viewportWidth">
+            @test.config.viewportSize.width px
+          </span>
           <span class="test-difference">
             @test.result.difference
           </span>
         </a>
         #if(@test.result.succeeded==False)
-          <div class="test-detail hidden">
+          <div class="test-testDetail hidden">
             <div class="testImage testImage-base"><img src="@test.base_image" /></div>
             <div class="testImage testImage-diff"><img src="@test.diff_image" /></div>
             <div class="testImage testImage-result"><img src="@test.current_image" /></div>

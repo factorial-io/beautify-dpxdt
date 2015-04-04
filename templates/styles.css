@@ -1,12 +1,28 @@
+body {
+  background-color: #fafafa;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+
 
 .testImage {
   float: left;
-  width: 33%;
+  width: 33.33%;
+  box-sizing: border-box;
+  padding: 3px;
 }
 
 .testImage img {
   width: 100%;
   height: auto;
+  border: 1px solid #eee;
+  padding: 3px;
+  box-sizing: border-box;
+  background-color: #fff;
+
 }
 
 .test {
@@ -14,6 +30,9 @@
 
 .test {
   clear: both;
+  list-style: none;
+  padding: 0 0 4px 0;
+  margin: 0;
 }
 
 .test .test-succeeded,
@@ -28,6 +47,7 @@
   border-radius: 2px;
   color: #fff;
   text-decoration: none;
+  background-color: #aaa;
 }
 
 .test a:hover {
@@ -42,7 +62,12 @@
   background-color: #f00;
 }
 
+.test .test-viewportWidth,
 .test .test-difference {
   width: 20%;
   float: right;
+}
+
+.test-testDetail {
+  padding-top: 4px;
 }

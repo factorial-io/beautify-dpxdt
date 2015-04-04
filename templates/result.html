@@ -1,17 +1,19 @@
 <html>
 <head>
   <title>@config.targetUrl</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
   <style>
     #include('styles.css')
   </style>
 </head>
-<body class="test">
-  <h1>Results for @config.targetUrl</h1>
-  <pre>
-    #pprint(config)
-  </pre>
-  <div class="testImage testImage-base"><img src="@base_image" /></div>
-  <div class="testImage testImage-diff"><img src="@diff_image" /></div>
-  <div class="testImage testImage-result"><img src="@current_image" /></div>
+<body>
+  <div class="test test-testDetail">
+    <h1>Results for @config.targetUrl</h1>
+    <a href="index.html" class="back-to-index">back to index</a>
+    <pre>@config_formatted</pre>
+    <div class="testImage testImage-base"><img src="@base_image" /></div>
+    <div class="testImage testImage-diff"><img src="@diff_image" /></div>
+    <div class="testImage testImage-result"><img src="@current_image" /></div>
+  </div>
 </body>
 </html>
