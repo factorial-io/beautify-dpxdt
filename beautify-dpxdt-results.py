@@ -19,8 +19,9 @@ def readTestResult(log_file):
   return {'succeeded': (difference_abs == 0), 'difference' : difference_rel, 'className': class_name}
 
 
-def readTest(config_file):
+def readTest(config_file, working_dir):
   base_path = os.path.dirname(config_file)
+  rel_base_path = os.path.relpath(base_path, working_dir)
   folder_name = os.path.basename(base_path)
   raw_json_data=open(config_file).read()
   data = json.loads(raw_json_data)
@@ -29,9 +30,9 @@ def readTest(config_file):
     'config': data,
     'config_formatted' : pprint.pformat(data, indent=2, width=1),
     'result': readTestResult(base_path + '/log.txt'),
-    'base_image' : base_path + '/ref_resized',
-    'current_image' : base_path + '/screenshot.png',
-    'diff_image': base_path + '/diff.png',
+    'base_image' : rel_base_path + '/ref_resized',
+    'current_image' : rel_base_path + '/screenshot.png',
+    'diff_image': rel_base_path + '/diff.png',
     'filename': folder_name + "-" + data['targetUrl'].replace('http://','').replace('/', '-') + '.html'
   }
 
@@ -44,7 +45,7 @@ def scanTests(directory):
   config_files = glob.glob(directory + '/*/*/config.json')
 
   for config_file in config_files:
-    tests.append(readTest(config_file))
+    tests.append(readTest(config_file, directory))
 
   return tests
 
@@ -62,7 +63,7 @@ def main():
   template = loader.load_template('result.html')
   for test in tests:
     content = template.render(test, loader=loader).encode('utf-8')
-    result_file = open(test['filename'], "w")
+    result_file = open(args.directory + "/" + test['filename'], "w")
 
     result_file.write(content)
     result_file.close()
@@ -72,11 +73,11 @@ def main():
   template = loader.load_template('index.html')
   content = template.render({ 'tests': tests }, loader=loader).encode('utf-8')
 
-  result_file = open('index.html', "w")
+  result_file = open(args.directory + "/" + 'index.html', "w")
   result_file.write(content)
   result_file.close()
 
-  print "Created inde.html ..."
+  print "Created index.html ..."
 
 
 if __name__ == "__main__":
